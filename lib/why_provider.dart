@@ -1,0 +1,52 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+class WhyProvider extends StatefulWidget {
+  const WhyProvider({super.key});
+
+  @override
+  State<WhyProvider> createState() => _WhyProviderState();
+}
+
+class _WhyProviderState extends State<WhyProvider> {
+  int counter = 0;
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      counter++;
+      // print(counter);
+      setState(() {});
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // print('Build' + counter.toString());
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Why Provider'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: Text(
+              "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}",
+              style: const TextStyle(fontSize: 50),
+            ),
+          ),
+          Center(
+            child: Text(
+              counter.toString(),
+              style: const TextStyle(fontSize: 50),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
