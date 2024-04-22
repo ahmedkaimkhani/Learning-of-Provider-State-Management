@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider_leaning/views/counter_view.dart';
 import 'package:provider_leaning/why_provider.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Colors.blue)),
       title: 'Provider Learning',
-      home: const WhyProvider(),
+      home: const CounterView(),
     );
   }
 }
