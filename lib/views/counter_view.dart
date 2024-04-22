@@ -1,6 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_leaning/provider/counter_provider.dart';
 
 class CounterView extends StatefulWidget {
   const CounterView({super.key});
@@ -12,27 +12,30 @@ class CounterView extends StatefulWidget {
 class _CounterViewState extends State<CounterView> {
   @override
   Widget build(BuildContext context) {
+    final counterProvider = Provider.of<CounterProvider>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Provider Counter'),
       ),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
-            child: Text('0'),
+            child: Text(counterProvider.counter.toString()),
           )
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          counterProvider.setCounter();
+        },
+        backgroundColor: Colors.blue,
         child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: Colors.blue,
       ),
     );
   }
