@@ -14,7 +14,7 @@ class _WhyProviderState extends State<WhyProvider> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       counter++;
       // print(counter);
       setState(() {});
@@ -33,6 +33,8 @@ class _WhyProviderState extends State<WhyProvider> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // i just want to rebuild this time and counter value but we use setstate when we use set state the
+          // whole screen widgets rebuld again its cost ram and slow our app that's why we should use to provider
           Center(
             child: Text(
               "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}",
