@@ -12,7 +12,9 @@ class CounterView extends StatefulWidget {
 class _CounterViewState extends State<CounterView> {
   @override
   Widget build(BuildContext context) {
-    final counterProvider = Provider.of<CounterProvider>(context);
+    final counterProvider =
+        Provider.of<CounterProvider>(context, listen: false);
+    print('build');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -23,7 +25,12 @@ class _CounterViewState extends State<CounterView> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
-            child: Text(counterProvider.counter.toString()),
+            child: Consumer<CounterProvider>(builder: (context, value, child) {
+              return Text(
+                value.counter.toString(),
+                style: const TextStyle(fontSize: 50),
+              );
+            }),
           )
         ],
       ),
