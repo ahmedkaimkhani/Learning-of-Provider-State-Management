@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_leaning/provider/counter_provider.dart';
@@ -10,6 +12,16 @@ class CounterView extends StatefulWidget {
 }
 
 class _CounterViewState extends State<CounterView> {
+  @override
+  void initState() {
+    super.initState();
+    final counterProvider =
+        Provider.of<CounterProvider>(context, listen: false);
+    Timer.periodic(const Duration(seconds: 2), (timer) {
+      counterProvider.setCounter();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final counterProvider =
@@ -26,6 +38,8 @@ class _CounterViewState extends State<CounterView> {
         children: [
           Center(
             child: Consumer<CounterProvider>(builder: (context, value, child) {
+              print(
+                  'only this widget build'); // only this widget build when you use cosumer widget in provider
               return Text(
                 value.counter.toString(),
                 style: const TextStyle(fontSize: 50),
