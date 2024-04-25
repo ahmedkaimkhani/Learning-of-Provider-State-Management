@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_leaning/provider/counter_provider.dart';
 import 'package:provider_leaning/provider/example_one_provider.dart';
+import 'package:provider_leaning/provider/favourite_provider.dart';
 import 'package:provider_leaning/views/favourite/favourite_view.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => CounterProvider()),
         ChangeNotifierProvider(create: (context) => ExampleOneProvider()),
+        ChangeNotifierProvider(create: (context) => FavouriteItemProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
