@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_leaning/provider/favourite_provider.dart';
-import 'package:provider_leaning/views/favourite/my_favourite.dart';
 
-class FavouriteView extends StatefulWidget {
-  const FavouriteView({super.key});
+import '../../provider/favourite_provider.dart';
+
+class MyFavouriteView extends StatefulWidget {
+  const MyFavouriteView({super.key});
 
   @override
-  State<FavouriteView> createState() => _FavouriteViewState();
+  State<MyFavouriteView> createState() => _MyFavouriteViewState();
 }
 
-class _FavouriteViewState extends State<FavouriteView> {
+class _MyFavouriteViewState extends State<MyFavouriteView> {
   @override
   Widget build(BuildContext context) {
+    final favoutiteProvider = Provider.of<FavouriteItemProvider>(context);
     print('build');
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +40,7 @@ class _FavouriteViewState extends State<FavouriteView> {
         children: [
           Expanded(
             child: ListView.builder(
-                itemCount: 100,
+                itemCount: favoutiteProvider.selectedItems.length,
                 itemBuilder: (context, index) {
                   return Consumer<FavouriteItemProvider>(
                       builder: (context, value, child) {
