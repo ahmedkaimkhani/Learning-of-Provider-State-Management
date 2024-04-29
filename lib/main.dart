@@ -5,7 +5,7 @@ import 'package:provider_leaning/provider/example_one_provider.dart';
 import 'package:provider_leaning/provider/favourite_provider.dart';
 import 'package:provider_leaning/provider/theme_changer_provider.dart';
 import 'package:provider_leaning/views/dark_theme.dart';
-import 'package:provider_leaning/views/favourite/favourite_view.dart';
+import 'package:provider_leaning/views/value_notify_listner.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,13 +24,23 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FavouriteItemProvider()),
         ChangeNotifierProvider(create: (context) => ThemeChangerProvider())
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            appBarTheme: const AppBarTheme(backgroundColor: Colors.blue)),
-        title: 'Provider Learning',
-        home: const DarkThemeView(),
-      ),
+      child: Builder(builder: (BuildContext context) {
+        final themeChanger = Provider.of<ThemeChangerProvider>(context);
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          themeMode: themeChanger.themeMode,
+          theme: ThemeData(
+            brightness: Brightness.light,
+            appBarTheme: const AppBarTheme(backgroundColor: Colors.blue),
+          ),
+          darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              appBarTheme: const AppBarTheme(backgroundColor: Colors.purple),
+              iconTheme: const IconThemeData(color: Colors.red)),
+          title: 'Provider Learning',
+          home: const NotifyListnerView(),
+        );
+      }),
     );
   }
 }
