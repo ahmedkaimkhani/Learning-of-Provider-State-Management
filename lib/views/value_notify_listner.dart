@@ -1,7 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class NotifyListnerView extends StatelessWidget {
-  const NotifyListnerView({super.key});
+  NotifyListnerView({super.key});
+
+  ValueNotifier<int> _counter = ValueNotifier<int>(0);
+  ValueNotifier<bool> toggle = ValueNotifier<bool>(true);
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +19,46 @@ class NotifyListnerView extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          //  Example One
+          ValueListenableBuilder(
+              valueListenable: toggle,
+              builder: (context, value, child) {
+                return TextFormField(
+                  decoration: InputDecoration(
+                      suffixIcon: InkWell(
+                          onTap: () {
+                            toggle.value = !toggle.value;
+                          },
+                          child: Icon(toggle.value
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility)),
+                      hintText: 'Password'),
+                  obscureText: toggle.value,
+                );
+              }),
+          // Example One
           Center(
-            child: Text(
-              'Notify Listner',
-              style: TextStyle(fontSize: 30),
-            ),
-          )
+              child: ValueListenableBuilder(
+            valueListenable: _counter,
+            builder: (context, value, child) {
+              return Text(
+                _counter.value.toString(),
+                style: const TextStyle(fontSize: 50),
+              );
+            },
+          ))
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed: () {
+          _counter.value++;
+          print(_counter.value.toString());
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

@@ -4,7 +4,6 @@ import 'package:provider_leaning/provider/counter_provider.dart';
 import 'package:provider_leaning/provider/example_one_provider.dart';
 import 'package:provider_leaning/provider/favourite_provider.dart';
 import 'package:provider_leaning/provider/theme_changer_provider.dart';
-import 'package:provider_leaning/views/dark_theme.dart';
 import 'package:provider_leaning/views/value_notify_listner.dart';
 
 void main() {
@@ -31,14 +30,14 @@ class MyApp extends StatelessWidget {
           themeMode: themeChanger.themeMode,
           theme: ThemeData(
             brightness: Brightness.light,
-            appBarTheme: const AppBarTheme(backgroundColor: Colors.blue),
+            appBarTheme: const AppBarTheme(backgroundColor: Colors.green),
           ),
           darkTheme: ThemeData(
               brightness: Brightness.dark,
               appBarTheme: const AppBarTheme(backgroundColor: Colors.purple),
               iconTheme: const IconThemeData(color: Colors.red)),
           title: 'Provider Learning',
-          home: const NotifyListnerView(),
+          home: NotifyListnerView(),
         );
       }),
     );
