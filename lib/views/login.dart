@@ -39,22 +39,45 @@ class _LoginViewState extends State<LoginView> {
             ),
             TextFormField(
               controller: passwordController,
-              decoration: const InputDecoration(hintText: 'Password'),
+              decoration: InputDecoration(
+                hintText: 'Password',
+                suffixIcon: InkWell(
+                  onTap: () {
+                    authProvider.toggleObsecure();
+                  },
+                  child: Icon(authProvider.obsecure
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility),
+                ),
+              ),
+              obscureText: authProvider.obsecure,
             ),
             const SizedBox(
               height: 20,
             ),
-            Container(
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(10),
+            InkWell(
+              onTap: () {
+                authProvider.login(
+                  emailController.text.toString(),
+                  passwordController.text.toString(),
+                );
+              },
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                    child: authProvider.loading
+                        ? const CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : const Text(
+                            'Login',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          )),
               ),
-              child: const Center(
-                  child: Text(
-                'Login',
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              )),
             ),
           ],
         ),
