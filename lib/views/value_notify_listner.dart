@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class NotifyListnerView extends StatelessWidget {
   NotifyListnerView({super.key});
 
-  ValueNotifier<int> _counter = ValueNotifier<int>(0);
+  ValueNotifier<int> counter = ValueNotifier<int>(0);
   ValueNotifier<bool> toggle = ValueNotifier<bool>(true);
 
   @override
@@ -42,10 +42,10 @@ class NotifyListnerView extends StatelessWidget {
           // Example One
           Center(
               child: ValueListenableBuilder(
-            valueListenable: _counter,
+            valueListenable: counter,
             builder: (context, value, child) {
               return Text(
-                _counter.value.toString(),
+                counter.value.toString(),
                 style: const TextStyle(fontSize: 50),
               );
             },
@@ -55,8 +55,8 @@ class NotifyListnerView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () {
-          _counter.value++;
-          print(_counter.value.toString());
+          counter.value++;
+          print(counter.value.toString());
         },
         child: Icon(Icons.add),
       ),
