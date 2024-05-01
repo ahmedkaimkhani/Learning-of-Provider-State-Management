@@ -3,11 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 class AuthProvider with ChangeNotifier {
-  bool _obsecure = true;
-  bool get obsecure => _obsecure;
+  bool _toggle = true;
+  bool get toggle => _toggle;
 
-  toggleObsecure() {
-    _obsecure = !obsecure;
+  toggleObsecureText() {
+    _toggle = !toggle;
     notifyListeners();
   }
 

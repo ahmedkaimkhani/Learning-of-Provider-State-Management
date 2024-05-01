@@ -43,14 +43,14 @@ class _LoginViewState extends State<LoginView> {
                 hintText: 'Password',
                 suffixIcon: InkWell(
                   onTap: () {
-                    authProvider.toggleObsecure();
+                    authProvider.toggleObsecureText();
                   },
-                  child: Icon(authProvider.obsecure
+                  child: Icon(authProvider.toggle
                       ? Icons.visibility_off_outlined
                       : Icons.visibility),
                 ),
               ),
-              obscureText: authProvider.obsecure,
+              obscureText: authProvider.toggle,
             ),
             const SizedBox(
               height: 20,
